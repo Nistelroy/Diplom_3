@@ -14,16 +14,4 @@ public class UserGenerator {
 
         return user;
     }
-
-    public static String getRandomEmail() {
-        return faker.internet().emailAddress();
-    }
-
-    public static String getRandomPassword() {
-        return faker.internet().password(6, 8);
-    }
-
-    public static String getRandomName() {
-        return faker.name().firstName();
-    }
 }

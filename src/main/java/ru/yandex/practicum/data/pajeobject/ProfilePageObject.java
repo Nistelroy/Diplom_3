@@ -13,17 +13,17 @@ public class ProfilePageObject {
         elementsLocators = new ElementsLocators();
     }
 
-    @Step
+    @Step("Клик по логотипу")
     public void clickToLogotip() {
         webDriver.findElement(elementsLocators.logotipBottomLogPage).click();
     }
 
-    @Step
+    @Step("Клик по кнопке конструктор")
     public void clickToConstructor() {
         webDriver.findElement(elementsLocators.constructorBottomLogPage).click();
     }
 
-    @Step
+    @Step("Клик по кнопке выход из профиля")
     public void clickToExit() throws InterruptedException {
         webDriver.findElement(elementsLocators.exitBottomProfilPage).click();
         Thread.sleep(1500);

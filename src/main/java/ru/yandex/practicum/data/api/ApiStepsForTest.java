@@ -3,7 +3,6 @@ package ru.yandex.practicum.data.api;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import ru.yandex.practicum.data.user.User;
-import ru.yandex.practicum.data.user.UserGenerator;
 
 import static io.restassured.RestAssured.given;
 
@@ -13,7 +12,7 @@ public class ApiStepsForTest {
     private static final String URI_FOR_REGISTER_USER = "https://stellarburgers.nomoreparties.site/api/auth/register";
     public static String accessToken;
 
-    @Step("Создание юзера")
+    @Step("Создание юзера через апи")
     public static void createUserInApi(User user) {
         Response response = given()
                 .header("Content-Type", "application/json")
@@ -25,20 +24,7 @@ public class ApiStepsForTest {
 
     }
 
-    @Step("Создание юзера")
-    public static void createRandomUserInApi() {
-        User user = UserGenerator.randomUser();
-        Response response = given()
-                .header("Content-Type", "application/json")
-                .and()
-                .body(user)
-                .when()
-                .post(URI_FOR_REGISTER_USER);
-        accessToken = response.then().extract().path("accessToken");
-
-    }
-
-    @Step("Логин юзером")
+    @Step("Логин юзером через апи")
     public static Response loginUser(User user) {
         Response response = given()
                 .header("Content-Type", "application/json")
@@ -49,8 +35,7 @@ public class ApiStepsForTest {
         return response;
     }
 
-
-    @Step("Удаление юзера")
+    @Step("Удаление юзера через апи")
     public static void deleteUser() {
         if (accessToken != null) {
             given()

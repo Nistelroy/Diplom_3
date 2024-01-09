@@ -13,13 +13,13 @@ public class ResetPasswordPageObject {
         elementsLocators = new ElementsLocators();
     }
 
-    @Step
-    public void clickToEnter(){
-        webDriver.findElement(elementsLocators.enterBottomForgotPage).click();
-    }
-
-    @Step
+    @Step("Открытие страницы восстанавления пароля")
     public void openResetPasswordPage() {
         webDriver.get("https://stellarburgers.nomoreparties.site/forgot-password");
+    }
+
+    @Step("Клик по кнопке входа на странице восстанавления пароля")
+    public void clickToEnter() {
+        webDriver.findElement(elementsLocators.enterBottomForgotPage).click();
     }
 }
