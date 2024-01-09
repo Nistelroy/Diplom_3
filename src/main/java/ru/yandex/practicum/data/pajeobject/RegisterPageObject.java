@@ -4,9 +4,10 @@ import com.github.javafaker.Faker;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import org.openqa.selenium.WebDriver;
-import ru.yandex.practicum.data.DataForTest;
+import ru.yandex.practicum.data.api.ApiStepsForTest;
 import ru.yandex.practicum.data.ElementsLocators;
-import ru.yandex.practicum.data.User;
+import ru.yandex.practicum.data.user.User;
+import ru.yandex.practicum.data.user.UserGenerator;
 
 public class RegisterPageObject {
     private WebDriver webDriver;
@@ -27,9 +28,7 @@ public class RegisterPageObject {
 
     @Step("Заполнение формы корректными данными")
     public void fillingRegistrationFormCorrectData() {
-        user = new User().withName(faker.name().firstName())
-                .withEmail(faker.internet().emailAddress())
-                .withPassword("123456");
+        user = UserGenerator.randomUser().withPassword("123456");
 
         webDriver.findElements(elementsLocators.inputDataFieldForRegistr).get(0).sendKeys(user.getName());
         webDriver.findElements(elementsLocators.inputDataFieldForRegistr).get(1).sendKeys(user.getEmail());
@@ -39,9 +38,8 @@ public class RegisterPageObject {
 
     @Step("Заполенение формы с паролем меньше 6 символов")
     public void fillingRegistrationFormShortPassword() {
-        user = new User().withName(faker.name().firstName())
-                .withEmail(faker.internet().emailAddress())
-                .withPassword("12345");
+        user = UserGenerator.randomUser().withPassword("12345");
+
         webDriver.findElements(elementsLocators.inputDataFieldForRegistr).get(0).sendKeys(user.getName());
         webDriver.findElements(elementsLocators.inputDataFieldForRegistr).get(1).sendKeys(user.getEmail());
         webDriver.findElements(elementsLocators.inputDataFieldForRegistr).get(2).sendKeys(user.getPassword());
@@ -50,17 +48,21 @@ public class RegisterPageObject {
 
     @Step("Удаление юзера через апи")
     public void deleteUserInApi() {
-        DataForTest.deleteUser();
+        ApiStepsForTest.deleteUser();
     }
 
     @Step("Логин юзером через апи")
     public Response loginUserInApi() {
-        return DataForTest.loginUser(user);
+        return ApiStepsForTest.loginUser(user);
     }
 
     @Step("Проверка видимости ошибки ввода пароля")
     public boolean passwordError() {
         return webDriver.findElement(elementsLocators.passwordErrorMassage).isDisplayed();
+    }
+
+    public void clickToEnterBottom() {
+        webDriver.findElement(elementsLocators.buttonOfEnterRegPage).click();
     }
 }
 

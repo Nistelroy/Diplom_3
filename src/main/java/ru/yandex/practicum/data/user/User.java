@@ -1,4 +1,4 @@
-package ru.yandex.practicum.data;
+package ru.yandex.practicum.data.user;
 
 public class User {
     private String email;

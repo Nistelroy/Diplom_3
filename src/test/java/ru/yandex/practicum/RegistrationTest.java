@@ -12,7 +12,7 @@ import static org.apache.http.HttpStatus.SC_UNAUTHORIZED;
 import static org.hamcrest.Matchers.matchesRegex;
 import static org.junit.Assert.assertTrue;
 
-public class RegistrationTests {
+public class RegistrationTest {
     private final WebDriver webDriver = new ChromeDriver();
     RegisterPageObject registerPageObject = new RegisterPageObject(webDriver);
 

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="EntryPointsManager">
     <list size="1">
-      <item index="0" class="java.lang.String" itemvalue="ru.yandex.practicum.RegistrationTests" />
+      <item index="0" class="java.lang.String" itemvalue="ru.yandex.practicum.RegistrationTest" />
     </list>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
